@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FUT CHAMPION ULTIME TEAM">
+    <meta name="keywords" content="FIFA, FUT, JavaScript">
+    <meta name="author" content="IMILY ABDERRAZZAK">
+    <meta name="CADER" content="YOUCODE">
+    <title>FUT-Champions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/assets/css/style.css" />
+  </head>
+  <body class="bg-gray-300">
+    <div id="app" class="container mx-auto px-4 py-8 relative">
+      <h1 class="text-4xl font-bold text-center mb-8">FUT Team Builder</h1>
+      
+      <div class="mb-8">
+        <select id="formation-select" class="w-full max-w-xs mx-auto block bg-gray-800 text-white rounded p-2">
+          <option value="4-4-2">4-4-2</option>
+        </select>
+      </div>
+        
+      <button onclick="toggle()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Add Player
+      </button>
+
+      <!-- Popup section with added transparency and absolute positioning -->
+      <div class="container mx-auto px-4 py-8  hidden bg-gray-800 bg-opacity-50 absolute top-0 left-0 w-full z-10" id="popup">
+        <img onclick="toggle()" src="./src/assets/img/signs-close-icon.png" alt="" class="w-[1rem]">
+        <h1 class="text-3xl font-bold text-center mb-8 text-white">FUT-Champions-Web-App-Ultimate-Team</h1>
+        <div class="bg-gray-800 p-4 rounded bg-opacity-50">
+          <h2 class="text-xl font-bold mb-4 text-white">Add Player</h2>
+          <form id="player-form" class="space-y-4">
+            <div>
+              <label class="block mb-2 text-white">Name</label>
+              <input type="text" id="name" required class="w-full p-2  rounded">
+            </div>
+            <div>
+              <label class="block mb-2 text-white">Rating</label>
+              <input type="number" id="rating" min="1" max="99" required class="w-full p-2  rounded">
+            </div>
+            <div>
+              <label class="block mb-2 text-white">Club</label>
+              <input type="file" name="image" id="club" accept=".png" class="w-full  rounded-md text-white outline-none focus:ring-2 focus:ring-blue-100">
+            </div>
+            <div>
+              <label class="block mb-2 text-white">Image-rec</label>
+              <input type="file" name="image" id="image-src" accept=".png" class="w-full  rounded-md text-white outline-none focus:ring-2 focus:ring-blue-100">
+            </div>
+            <div>
+              <label class="block mb-2 text-white">Nationality</label>
+              <input type="file" name="image" id="nationality" accept=".png" class="w-full   rounded-md text-white outline-none focus:ring-2 focus:ring-blue-100">
+            </div>
+            <div>
+              <label class="block mb-2 text-white">Position</label>
+              <select id="position" required class="w-full p-2  rounded">
+                <option value="LB">LB</option>
+                <option value="CB1">CB1</option>
+                <option value="CB2">CB2</option>
+                <option value="RB">RB</option>
+                <option value="LM">LM</option>
+                <option value="CM1">CM1</option>
+                <option value="CM2">CM2</option>
+                <option value="RM">RM</option>
+                <option value="ST1">ST1</option>
+                <option value="ST2">ST2</option>
+                <option value="GK">GK</option>
+              </select>
+            </div>
+          <!-- Non-GK Stats -->
+<div id="nongkstats">
+  <label for="pace">Pace:</label>
+  <input type="number" id="pace" name="pace" min="0" max="99">
+
+  <label for="shooting">Shooting:</label>
+  <input type="number" id="shooting" name="shooting" min="0" max="99">
+
+  <label for="passing">Passing:</label>
+  <input type="number" id="passing" name="passing" min="0" max="99">
+
+  <label for="dribbling">Dribbling:</label>
+  <input type="number" id="dribbling" name="dribbling" min="0" max="99">
+
+  <label for="defending">Defending:</label>
+  <input type="number" id="defending" name="defending" min="0" max="99">
+
+  <label for="physical">Physical:</label>
+  <input type="number" id="physical" name="physical" min="0" max="99">
+</div>
+
+<!-- GK Stats -->
+<div id="gkstats" class="hidden">
+  <label for="diving">Diving:</label>
+  <input type="number" id="diving" name="diving" min="0" max="99">
+
+  <label for="handling">Handling:</label>
+  <input type="number" id="handling" name="handling" min="0" max="99">
+
+  <label for="kicking">Kicking:</label>
+  <input type="number" id="kicking" name="kicking" min="0" max="99">
+
+  <label for="reflexes">Reflexes:</label>
+  <input type="number" id="reflexes" name="reflexes" min="0" max="99">
+
+  <label for="positioning">Positioning:</label>
+  <input type="number" id="positioning" name="positioning" min="0" max="99">
+</div>
+
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded">Add Player</button>
+          </form>
+        </div>
+      </div>
+      <!-- Stadium Section -->
+       <section>
+        <div class="bg-[url('./src/assets/img/Group1.webp')] bg-cover bg-center grid grid-rows-4 lg:h-[200vh]">
+          <!-- Strikers -->
+          <div class="grid grid-cols-2 gap-20">
+            <div id="ST1" class="flex items-center justify-end">
+            </div>
+            <div id="ST2" class="flex items-center">
+            </div>
+          </div>
+  
+          <!-- Midfields -->
+          <div class="grid grid-cols-4 gap-5">
+            <div id="LM">
+            </div>
+  
+              <div id="CM1">
+              </div>
+              <div id="CM2">
+              </div>
+  
+            <div id="RM">
+            </div>
+          </div>
+  
+          <!-- Defenders -->
+          <div class="grid grid-cols-4 gap-5">
+            <div id="LB">
+            </div>
+  
+              <div id="CB1">
+              </div>
+              <div id="CB2">
+              </div>  
+            <div id="RB">
+            </div>
+          </div>
+          <!-- Goal Keeper -->
+          <div id="GK" class="flex justify-center">
+          </div>
+        </div>
+      </div>
+       </section>
+     
+    <!--Section of changments-->
+    <h1 class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">changement</h1>   
+    <section id="changments" class="  flex-wrap grid  grid-cols-3 lg:grid-cols-6 justify-center bg-green-500">
+  
+      </section>  
+    <script src="./src/assets/js/script.js"></script>
+  </body>
+</html>
